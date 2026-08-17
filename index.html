@@ -71,6 +71,17 @@
             flex-wrap: wrap;
         }
 
+        /* Gösterdiğin örnekteki gibi blurlu ve karanlık arkaplan katmanı */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('salon1.jpg') no-repeat center center/cover;
+            filter: blur(8px) brightness(0.35);
+            transform: scale(1.1);
+            z-index: 0;
+        }
+
         /* Yanlardaki Logolar */
         .side-decor-wrapper {
             position: absolute;
