@@ -179,7 +179,7 @@
             transform: translateY(-2px);
         }
         
-        section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
+        section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; text-align: center; }
         
         h2 { 
             color: #FFD700; 
@@ -213,8 +213,123 @@
         }
         .feature-card h3 { color: #FFD700; margin-bottom: 15px; font-size: 22px; font-family: 'Impact', sans-serif; letter-spacing: 1px; }
         .feature-card p { color: #bbb; font-size: 15px; }
+
+        /* --- ÜYELİK PAKETLERİ --- */
+        .pricing-section { padding: 80px 20px; background: #1a1a1a; text-align: center; max-width: 1200px; margin: 0 auto; }
         
-        /* --- SLİDER (5 GÖRSEL) --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+            align-items: stretch;
+        }
+
+        .membership-card {
+            background: #212121;
+            border: 2px solid #333;
+            border-radius: 16px;
+            padding: 35px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: left;
+        }
+
+        .membership-card.popular {
+            border-color: #FFD700;
+            background: linear-gradient(145deg, #252520 0%, #1f1f1f 100%);
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.15);
+        }
+
+        .membership-card:hover {
+            transform: translateY(-8px);
+            border-color: #FFD700;
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.25);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            right: 25px;
+            background: #FFD700;
+            color: #1a1a1a;
+            padding: 5px 15px;
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
+        }
+
+        .card-header h3 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 8px;
+            font-family: 'Impact', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .card-header p {
+            color: #aaa;
+            font-size: 13px;
+            margin-bottom: 20px;
+            min-height: 40px;
+        }
+
+        .price-box {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+        }
+
+        .price-box .amount {
+            font-size: 32px;
+            font-weight: 900;
+            color: #FFD700;
+            font-family: 'Impact', sans-serif;
+        }
+
+        .price-box .period {
+            font-size: 13px;
+            color: #888;
+            margin-left: 5px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .features-list li {
+            color: #ddd;
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-list li::before {
+            content: "✔";
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .membership-card .btn {
+            width: 100%;
+            text-align: center;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        /* --- SLİDER --- */
         .slider-container {
             position: relative;
             background: #212121;
@@ -345,6 +460,7 @@
             <nav>
                 <a href="#hero">Ana Sayfa</a>
                 <a href="#neden-biz">Neden Biz?</a>
+                <a href="#uyelik">Üyelik</a>
                 <a href="#galeri">Galeri</a>
                 <a href="#hesaplayici">Kalori Hesapla</a>
                 <a href="https://www.instagram.com/painfitt09/" target="_blank">Instagram</a>
@@ -352,7 +468,6 @@
         </div>
     </header>
 
-    <!-- Hero Alanı -->
     <div class="hero" id="hero">
         <div class="side-decor-wrapper side-decor-left">
             <img src="logo.jpg" alt="PainFit Logo">
@@ -367,7 +482,6 @@
         <div class="hero-video-wrapper">
             <div class="hero-stripe-top"></div>
             <div class="hero-video-container">
-                <!-- controls eklendi, böylece ses açılıp kapatılabilir -->
                 <video autoplay loop playsinline controls>
                     <source src="insta-video.mp4" type="video/mp4">
                     Tarayıcınız video etiketini desteklemiyor.
@@ -381,7 +495,6 @@
         </div>
     </div>
 
-    <!-- NEDEN BİZ BÖLÜMÜ -->
     <section id="neden-biz">
         <h2>Neden PainFit?</h2>
         <div class="features-grid">
@@ -400,7 +513,87 @@
         </div>
     </section>
 
-    <!-- 5 ADETLİ SLİDER GALERİ -->
+    <!-- FİYATLAR (Görsele Göre Güncellendi) -->
+    <section class="pricing-section" id="uyelik">
+        <h2>Üyelik Paketleri</h2>
+        <p style="color: #aaa; margin-top: -20px; margin-bottom: 40px;">Sana en uygun üyeliği seç, sınırlarını ortadan kaldır.</p>
+        
+        <div class="pricing-grid">
+            <!-- Aylık -->
+            <div class="membership-card">
+                <div class="card-header">
+                    <h3>Aylık Üyelik</h3>
+                    <p>Esnek kullanım ve kısa vadeli başlangıç yapmak isteyenler için.</p>
+                </div>
+                <div class="price-box">
+                    <span class="amount">2.500 TL</span><span class="period">/ Aylık</span>
+                </div>
+                <ul class="features-list">
+                    <li>Kulübe Sınırsız Giriş</li>
+                    <li>Serbest Ağırlık Alanı</li>
+                    <li>Kardiyo Ekipmanları</li>
+                    <li>Soyunma Odası & Duş</li>
+                </ul>
+                <a href="#hesaplayici" class="btn">Hemen Seç</a>
+            </div>
+
+            <!-- 3 Aylık -->
+            <div class="membership-card">
+                <div class="card-header">
+                    <h3>3 Aylık Üyelik</h3>
+                    <p>İstikrarlı gelişim ve avantajlı fiyat arayanlar için.</p>
+                </div>
+                <div class="price-box">
+                    <span class="amount">6.500 TL</span><span class="period">/ 3 Aylık</span>
+                </div>
+                <ul class="features-list">
+                    <li>Kulübe Sınırsız Giriş</li>
+                    <li>Serbest Ağırlık Alanı</li>
+                    <li>Kardiyo Ekipmanları</li>
+                    <li>Soyunma Odası & Duş</li>
+                </ul>
+                <a href="#hesaplayici" class="btn">Hemen Seç</a>
+            </div>
+
+            <!-- 6 Aylık -->
+            <div class="membership-card popular">
+                <div class="popular-badge">En Popüler</div>
+                <div class="card-header">
+                    <h3>6 Aylık Üyelik</h3>
+                    <p>Uzun vadeli hedefler ve en iyi fiyat avantajı için.</p>
+                </div>
+                <div class="price-box">
+                    <span class="amount">11.000 TL</span><span class="period">/ 6 Aylık</span>
+                </div>
+                <ul class="features-list">
+                    <li>Kulübe Sınırsız Giriş</li>
+                    <li>Serbest Ağırlık Alanı</li>
+                    <li>Periyodik Vücut Analizi</li>
+                    <li>Soyunma Odası & Duş</li>
+                </ul>
+                <a href="#hesaplayici" class="btn">Hemen Seç</a>
+            </div>
+
+            <!-- VIP / Özel Ders Dahil -->
+            <div class="membership-card">
+                <div class="card-header">
+                    <h3>VIP & Özel Ders</h3>
+                    <p>Birebir özel ders ve tam kapsamlı profesyonel paket.</p>
+                </div>
+                <div class="price-box">
+                    <span class="amount">18.000 TL</span><span class="period">/ Paket</span>
+                </div>
+                <ul class="features-list">
+                    <li>Sınırsız Salon Kullanımı</li>
+                    <li>Özel Koç (Personal Trainer) Desteği</li>
+                    <li>Kişiye Özel Beslenme Programı</li>
+                    <li>Öncelikli Randevu ve Hizmet</li>
+                </ul>
+                <a href="#hesaplayici" class="btn">Hemen Seç</a>
+            </div>
+        </div>
+    </section>
+
     <section id="galeri">
         <h2>Salon İçi Görseller</h2>
         <div class="slider-container">
@@ -413,25 +606,20 @@
         </div>
     </section>
 
-    <!-- Resim Büyütme (Modal) Ekranı -->
     <div class="modal" id="imageModal" onclick="resmiKapat()">
         <span class="modal-close">&times;</span>
         <img id="modalImg">
     </div>
 
-    <!-- KALORİ HESAPLAYICI -->
     <section id="hesaplayici">
         <h2>Ücretsiz Kalori Hesaplama</h2>
         <div class="calculator">
             <label>Kilo (kg):</label>
             <input type="number" id="kilo" placeholder="Örn: 75">
-
             <label>Boy (cm):</label>
             <input type="number" id="boy" placeholder="Örn: 175">
-
             <label>Yaş:</label>
             <input type="number" id="yas" placeholder="Örn: 20">
-
             <label>Aktivite Seviyesi:</label>
             <select id="aktivite">
                 <option value="1.2">Hareketsiz (Masa başı)</option>
@@ -439,8 +627,7 @@
                 <option value="1.55">Orta Hareketli (Haftada 3-5 gün spor)</option>
                 <option value="1.725">Çok Hareketli (Haftada 6-7 gün spor)</option>
             </select>
-
-            <button class="btn" onclick="kaloriHesapla()">Hesapla</button>
+            <button class="btn" onclick="kaloriHesapla()">Hesapla</option>
             <div id="sonuc"></div>
         </div>
     </section>
@@ -452,7 +639,6 @@
     <script>
         const images = ["salon1.jpg", "salon2.jpg", "salon3.jpg", "salon4.jpg", "salon5.jpg"];
         let currentIndex = 0;
-
         const sliderImg = document.getElementById("sliderImage");
         const dotsContainer = document.getElementById("sliderDots");
 
@@ -465,7 +651,6 @@
                 dotsContainer.appendChild(dot);
             }
         }
-
         function updateSlider() {
             sliderImg.src = images[currentIndex];
             const dots = document.querySelectorAll(".dot");
@@ -473,52 +658,41 @@
                 dot.classList.toggle("active", index === currentIndex);
             });
         }
-
         function sonrakiResim() {
             currentIndex = (currentIndex + 1) % images.length;
             updateSlider();
         }
-
         function oncekiResim() {
             currentIndex = (currentIndex - 1 + images.length) % images.length;
             updateSlider();
         }
-
         function gosterResim(index) {
             currentIndex = index;
             updateSlider();
         }
-
         function resmiAc() {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImg');
             modal.style.display = "flex";
             modalImg.src = images[currentIndex];
         }
-
         function resmiKapat() {
             document.getElementById('imageModal').style.display = "none";
         }
-
         createDots();
-
         function kaloriHesapla() {
             const kilo = parseFloat(document.getElementById('kilo').value);
             const boy = parseFloat(document.getElementById('boy').value);
             const yas = parseFloat(document.getElementById('yas').value);
             const aktivite = parseFloat(document.getElementById('aktivite').value);
-
             if (!kilo || !boy || !yas) {
                 document.getElementById('sonuc').innerText = "Lütfen tüm alanları eksiksiz doldur.";
                 return;
             }
-
             let bmh = 88.36 + (13.4 * kilo) + (4.8 * boy) - (5.7 * yas);
             let gunlukKalori = Math.round(bmh * aktivite);
-
             document.getElementById('sonuc').innerText = `Günlük Kalori İhtiyacın: ${gunlukKalori} kcal`;
         }
     </script>
-
 </body>
 </html>
