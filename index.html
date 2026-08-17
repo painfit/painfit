@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAIN FIT - Sınırlarını Zorla</title>
+    <title>PAINFIT - Sınırlarını Zorla</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { background-color: #1a1a1a; color: #FFFFFF; line-height: 1.6; padding-top: 135px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #1a1a1a; color: #FFFFFF; line-height: 1.6; padding-top: 135px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
         
         header { 
             background: #1a1a1a; 
@@ -23,7 +23,6 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.8);
         }
 
-        /* --- ÜST SARI-SİYAH ÇAPRAZ ŞERİT --- */
         .warning-stripe {
             width: 100vw;
             height: 18px;
@@ -58,48 +57,107 @@
         nav a { color: #FFFFFF; text-decoration: none; margin-left: 25px; transition: 0.3s; font-weight: 600; font-size: 17px; }
         nav a:hover { color: #FFD700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.8); }
         
-        /* Arka Plan Video Alanı */
+        /* --- HERO ALANI --- */
         .hero { 
-            height: 85vh; 
+            min-height: 90vh; 
             display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
             align-items: center; 
-            text-align: center; 
-            padding: 0 20px; 
+            justify-content: center; 
+            padding: 50px 20px; 
             position: relative;
             overflow: hidden;
-            background-color: #000;
-        }
-        
-        .bg-video {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-            z-index: 1;
+            background: #1a1a1a;
+            gap: 50px;
+            flex-wrap: wrap;
         }
 
-        .hero::before {
-            content: '';
+        /* Yanlardaki Logolar */
+        .side-decor-wrapper {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            top: 50%;
+            transform: translateY(-50%);
+            width: 340px;
+            height: 340px;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.45;
+            -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 90%);
+            mask-image: radial-gradient(circle, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 90%);
+        }
+
+        .side-decor-left { left: 30px; }
+        .side-decor-right { right: 30px; }
+
+        .side-decor-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 35px rgba(255, 215, 0, 0.4));
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
+            text-align: left;
             z-index: 2;
         }
-        .hero > * { position: relative; z-index: 3; }
 
         .hero h1 { 
-            font-size: 65px; 
+            font-size: 55px; 
             color: #FFD700; 
             margin-bottom: 20px; 
             text-transform: uppercase; 
             letter-spacing: 3px; 
             font-family: 'Impact', Arial Black, sans-serif;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.9), 0 0 30px rgba(255, 215, 0, 0.7);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
         }
 
-        .hero p { font-size: 18px; max-width: 700px; margin-bottom: 30px; color: #E0E0E0; font-weight: 500; }
+        .hero p { font-size: 18px; margin-bottom: 30px; color: #E0E0E0; font-weight: 500; }
+
+        /* Video ve Şerit Alanı */
+        .hero-video-wrapper {
+            position: relative;
+            z-index: 2;
+            padding: 15px 0;
+        }
+
+        .hero-stripe-top, .hero-stripe-bottom {
+            position: absolute;
+            left: -20px;
+            right: -20px;
+            height: 16px;
+            background: repeating-linear-gradient(
+                -45deg,
+                #111,
+                #111 15px,
+                #FFD700 15px,
+                #FFD700 30px
+            );
+            z-index: 5;
+            box-shadow: 0 0 10px rgba(0,0,0,0.8);
+            border: 1px solid #000;
+        }
+
+        .hero-stripe-top { top: 0; }
+        .hero-stripe-bottom { bottom: 0; }
+
+        .hero-video-container {
+            position: relative;
+            width: 320px;
+            height: 570px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 4px solid #FFD700;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+            background: #000;
+        }
+
+        .hero-video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         
         .btn { 
             background-color: #FFD700; 
@@ -156,7 +214,7 @@
         .feature-card h3 { color: #FFD700; margin-bottom: 15px; font-size: 22px; font-family: 'Impact', sans-serif; letter-spacing: 1px; }
         .feature-card p { color: #bbb; font-size: 15px; }
         
-        /* --- SLIDER (6 ADET) --- */
+        /* --- SLİDER (5 GÖRSEL) --- */
         .slider-container {
             position: relative;
             background: #212121;
@@ -283,7 +341,7 @@
     <header>
         <div class="warning-stripe"></div>
         <div class="header-content">
-            <div class="logo">PAIN FIT</div>
+            <div class="logo">PAINFIT</div>
             <nav>
                 <a href="#hero">Ana Sayfa</a>
                 <a href="#neden-biz">Neden Biz?</a>
@@ -294,19 +352,38 @@
         </div>
     </header>
 
+    <!-- Hero Alanı -->
     <div class="hero" id="hero">
-        <video autoplay muted loop playsinline class="bg-video">
-            <source src="salon-video.mp4" type="video/mp4">
-            Tarayıcınız video etiketini desteklemiyor.
-        </video>
-        <h1>SINIRLARINI ZORLA</h1>
-        <p>Profesyonel ekipmanlar ve güçlü altyapı ile hedefine ulaşmak için doğru yerdesin.</p>
-        <a href="#hesaplayici" class="btn">Hemen Başla</a>
+        <div class="side-decor-wrapper side-decor-left">
+            <img src="logo.jpg" alt="PainFit Logo">
+        </div>
+
+        <div class="hero-text">
+            <h1>SINIRLARINI ZORLA</h1>
+            <p>Profesyonel ekipmanlar ve güçlü altyapı ile hedefine ulaşmak için doğru yerdesin.</p>
+            <a href="#hesaplayici" class="btn">Hemen Başla</a>
+        </div>
+        
+        <div class="hero-video-wrapper">
+            <div class="hero-stripe-top"></div>
+            <div class="hero-video-container">
+                <!-- controls eklendi, böylece ses açılıp kapatılabilir -->
+                <video autoplay loop playsinline controls>
+                    <source src="insta-video.mp4" type="video/mp4">
+                    Tarayıcınız video etiketini desteklemiyor.
+                </video>
+            </div>
+            <div class="hero-stripe-bottom"></div>
+        </div>
+
+        <div class="side-decor-wrapper side-decor-right">
+            <img src="logo.jpg" alt="PainFit Logo">
+        </div>
     </div>
 
     <!-- NEDEN BİZ BÖLÜMÜ -->
     <section id="neden-biz">
-        <h2>Neden Pain Fit?</h2>
+        <h2>Neden PainFit?</h2>
         <div class="features-grid">
             <div class="feature-card">
                 <h3>Güçlü Ekipmanlar</h3>
@@ -323,7 +400,7 @@
         </div>
     </section>
 
-    <!-- 6 ADETLİ SLİDER GALERİ -->
+    <!-- 5 ADETLİ SLİDER GALERİ -->
     <section id="galeri">
         <h2>Salon İçi Görseller</h2>
         <div class="slider-container">
@@ -369,12 +446,11 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 PAIN FIT Spor Salonu | Tüm hakları saklıdır.</p>
+        <p>&copy; 2026 PAINFIT Spor Salonu | Tüm hakları saklıdır.</p>
     </footer>
 
     <script>
-        // 6 Adet Fotoğraf Listesi
-        const images = ["salon1.jpg", "salon2.jpg", "salon3.jpg", "salon4.jpg", "salon5.jpg", "salon6.jpg"];
+        const images = ["salon1.jpg", "salon2.jpg", "salon3.jpg", "salon4.jpg", "salon5.jpg"];
         let currentIndex = 0;
 
         const sliderImg = document.getElementById("sliderImage");
