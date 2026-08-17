@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAIN FIT - Sınırlarını Zorla</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { background-color: #1a1a1a; color: #FFFFFF; line-height: 1.6; padding-top: 135px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        header { 
+            background: #1a1a1a; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            left: 0;
+            z-index: 1000; 
+            flex-direction: column;
+            border-bottom: 2px solid #333;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        }
+
+        /* --- ÜST SARI-SİYAH ÇAPRAZ ŞERİT --- */
+        .warning-stripe {
+            width: 100vw;
+            height: 18px;
+            background: repeating-linear-gradient(
+                -45deg,
+                #111,
+                #111 20px,
+                #FFD700 20px,
+                #FFD700 40px
+            );
+            border-bottom: 2px solid #000;
+        }
+
+        .header-content {
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo { 
+            color: #FFD700; 
+            font-size: 34px; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            font-family: 'Impact', Arial Black, sans-serif;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+
+        nav a { color: #FFFFFF; text-decoration: none; margin-left: 25px; transition: 0.3s; font-weight: 600; font-size: 17px; }
+        nav a:hover { color: #FFD700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.8); }
+        
+        /* Arka Plan Video Alanı */
+        .hero { 
+            height: 85vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            padding: 0 20px; 
+            position: relative;
+            overflow: hidden;
+            background-color: #000;
+        }
+        
+        .bg-video {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2;
+        }
+        .hero > * { position: relative; z-index: 3; }
+
+        .hero h1 { 
+            font-size: 65px; 
+            color: #FFD700; 
+            margin-bottom: 20px; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            font-family: 'Impact', Arial Black, sans-serif;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.9), 0 0 30px rgba(255, 215, 0, 0.7);
+        }
+
+        .hero p { font-size: 18px; max-width: 700px; margin-bottom: 30px; color: #E0E0E0; font-weight: 500; }
+        
+        .btn { 
+            background-color: #FFD700; 
+            color: #1a1a1a; 
+            padding: 15px 35px; 
+            border: none; 
+            font-weight: 900; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            text-decoration: none; 
+            transition: 0.3s; 
+            font-size: 16px; 
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        .btn:hover { 
+            background-color: #ffe44d; 
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+            transform: translateY(-2px);
+        }
+        
+        section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
+        
+        h2 { 
+            color: #FFD700; 
+            margin-bottom: 40px; 
+            font-size: 40px; 
+            text-transform: uppercase; 
+            font-family: 'Impact', Arial Black, sans-serif;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+
+        /* --- NEDEN BİZ KARTLARI --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .feature-card {
+            background: #212121;
+            padding: 35px 25px;
+            border-radius: 10px;
+            border: 2px solid #333;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .feature-card:hover {
+            border-color: #FFD700;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
+        }
+        .feature-card h3 { color: #FFD700; margin-bottom: 15px; font-size: 22px; font-family: 'Impact', sans-serif; letter-spacing: 1px; }
+        .feature-card p { color: #bbb; font-size: 15px; }
+        
+        /* --- SLIDER (6 ADET) --- */
+        .slider-container {
+            position: relative;
+            background: #212121;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #333;
+            box-shadow: 0 0 25px rgba(0,0,0,0.8);
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+        }
+
+        .slider-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            display: block;
+            transition: opacity 0.3s ease;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: #FFD700;
+            border: 2px solid #FFD700;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .slider-btn:hover {
+            background: #FFD700;
+            color: #1a1a1a;
+            box-shadow: 0 0 15px #FFD700;
+        }
+
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background: #1e1e1e;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #555;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .dot.active {
+            background: #FFD700;
+            box-shadow: 0 0 8px #FFD700;
+            transform: scale(1.2);
+        }
+
+        /* Modal Ekranı */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.92);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .modal img {
+            max-width: 85%;
+            max-height: 85vh;
+            border: 3px solid #FFD700;
+            border-radius: 8px;
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.7);
+        }
+        .modal-close {
+            position: absolute;
+            top: 25px; right: 40px;
+            color: #FFD700;
+            font-size: 45px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .modal-close:hover { color: #fff; text-shadow: 0 0 10px #FFD700; }
+
+        /* Kalori Hesaplayıcı */
+        .calculator { background: #212121; padding: 35px; border-radius: 10px; border: 2px solid #333; display: inline-block; text-align: left; width: 100%; max-width: 500px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .calculator label { display: block; margin-top: 15px; color: #FFD700; font-weight: bold; }
+        .calculator input, .calculator select { width: 100%; padding: 12px; margin-top: 5px; background: #2c2c2c; border: 1px solid #444; color: #fff; border-radius: 5px; }
+        .calculator button { margin-top: 20px; width: 100%; }
+        #sonuc { margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.1); border-radius: 5px; font-size: 18px; font-weight: bold; color: #FFD700; text-align: center; border: 1px solid rgba(255, 215, 0, 0.3); }
+        
+        footer { background-color: #111; padding: 30px; text-align: center; color: #888; border-top: 2px solid #333; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="warning-stripe"></div>
+        <div class="header-content">
+            <div class="logo">PAIN FIT</div>
+            <nav>
+                <a href="#hero">Ana Sayfa</a>
+                <a href="#neden-biz">Neden Biz?</a>
+                <a href="#galeri">Galeri</a>
+                <a href="#hesaplayici">Kalori Hesapla</a>
+                <a href="https://www.instagram.com/painfitt09/" target="_blank">Instagram</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero" id="hero">
+        <video autoplay muted loop playsinline class="bg-video">
+            <source src="salon-video.mp4" type="video/mp4">
+            Tarayıcınız video etiketini desteklemiyor.
+        </video>
+        <h1>SINIRLARINI ZORLA</h1>
+        <p>Profesyonel ekipmanlar ve güçlü altyapı ile hedefine ulaşmak için doğru yerdesin.</p>
+        <a href="#hesaplayici" class="btn">Hemen Başla</a>
+    </div>
+
+    <!-- NEDEN BİZ BÖLÜMÜ -->
+    <section id="neden-biz">
+        <h2>Neden Pain Fit?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Güçlü Ekipmanlar</h3>
+                <p>En ağır antrenmanların ve maximum verim alabilmen için tasarlanmış profesyonel serbest ağırlıklar ve makineler.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Özel Programlar</h3>
+                <p>Hedefine (Hacim, Yağ Yakımı, Kondisyon) en kısa sürede ulaşman için kişiselleştirilmiş antrenman ve beslenme desteği.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Motive Edici Ortam</h3>
+                <p>Sınırlarını zorlamak isteyenlerin buluştuğu, enerjisi yüksek ve hedefe odaklı kusursuz spor atmosferi.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6 ADETLİ SLİDER GALERİ -->
+    <section id="galeri">
+        <h2>Salon İçi Görseller</h2>
+        <div class="slider-container">
+            <div class="slider-wrapper">
+                <button class="slider-btn prev-btn" onclick="oncekiResim()">&#10094;</button>
+                <img id="sliderImage" src="salon1.jpg" alt="Salon Görseli" onclick="resmiAc()">
+                <button class="slider-btn next-btn" onclick="sonrakiResim()">&#10095;</button>
+            </div>
+            <div class="slider-dots" id="sliderDots"></div>
+        </div>
+    </section>
+
+    <!-- Resim Büyütme (Modal) Ekranı -->
+    <div class="modal" id="imageModal" onclick="resmiKapat()">
+        <span class="modal-close">&times;</span>
+        <img id="modalImg">
+    </div>
+
+    <!-- KALORİ HESAPLAYICI -->
+    <section id="hesaplayici">
+        <h2>Ücretsiz Kalori Hesaplama</h2>
+        <div class="calculator">
+            <label>Kilo (kg):</label>
+            <input type="number" id="kilo" placeholder="Örn: 75">
+
+            <label>Boy (cm):</label>
+            <input type="number" id="boy" placeholder="Örn: 175">
+
+            <label>Yaş:</label>
+            <input type="number" id="yas" placeholder="Örn: 20">
+
+            <label>Aktivite Seviyesi:</label>
+            <select id="aktivite">
+                <option value="1.2">Hareketsiz (Masa başı)</option>
+                <option value="1.375">Az Hareketli (Haftada 1-3 gün spor)</option>
+                <option value="1.55">Orta Hareketli (Haftada 3-5 gün spor)</option>
+                <option value="1.725">Çok Hareketli (Haftada 6-7 gün spor)</option>
+            </select>
+
+            <button class="btn" onclick="kaloriHesapla()">Hesapla</button>
+            <div id="sonuc"></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 PAIN FIT Spor Salonu | Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+        // 6 Adet Fotoğraf Listesi
+        const images = ["salon1.jpg", "salon2.jpg", "salon3.jpg", "salon4.jpg", "salon5.jpg", "salon6.jpg"];
+        let currentIndex = 0;
+
+        const sliderImg = document.getElementById("sliderImage");
+        const dotsContainer = document.getElementById("sliderDots");
+
+        function createDots() {
+            for (let i = 0; i < images.length; i++) {
+                const dot = document.createElement("div");
+                dot.classList.add("dot");
+                if (i === 0) dot.classList.add("active");
+                dot.onclick = () => gosterResim(i);
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function updateSlider() {
+            sliderImg.src = images[currentIndex];
+            const dots = document.querySelectorAll(".dot");
+            dots.forEach((dot, index) => {
+                dot.classList.toggle("active", index === currentIndex);
+            });
+        }
+
+        function sonrakiResim() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateSlider();
+        }
+
+        function oncekiResim() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateSlider();
+        }
+
+        function gosterResim(index) {
+            currentIndex = index;
+            updateSlider();
+        }
+
+        function resmiAc() {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modal.style.display = "flex";
+            modalImg.src = images[currentIndex];
+        }
+
+        function resmiKapat() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+
+        createDots();
+
+        function kaloriHesapla() {
+            const kilo = parseFloat(document.getElementById('kilo').value);
+            const boy = parseFloat(document.getElementById('boy').value);
+            const yas = parseFloat(document.getElementById('yas').value);
+            const aktivite = parseFloat(document.getElementById('aktivite').value);
+
+            if (!kilo || !boy || !yas) {
+                document.getElementById('sonuc').innerText = "Lütfen tüm alanları eksiksiz doldur.";
+                return;
+            }
+
+            let bmh = 88.36 + (13.4 * kilo) + (4.8 * boy) - (5.7 * yas);
+            let gunlukKalori = Math.round(bmh * aktivite);
+
+            document.getElementById('sonuc').innerText = `Günlük Kalori İhtiyacın: ${gunlukKalori} kcal`;
+        }
+    </script>
+
+</body>
+</html>
