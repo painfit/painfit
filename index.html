@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAINFIT - Sınırlarını Zorla</title>
+    <!-- Favicon Eklendi -->
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { background-color: #1a1a1a; color: #FFFFFF; line-height: 1.6; padding-top: 135px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
@@ -71,7 +73,6 @@
             flex-wrap: wrap;
         }
 
-        /* Gösterdiğin örnekteki gibi blurlu ve karanlık arkaplan katmanı */
         .hero::before {
             content: "";
             position: absolute;
@@ -82,7 +83,6 @@
             z-index: 0;
         }
 
-        /* Yanlardaki Logolar */
         .side-decor-wrapper {
             position: absolute;
             top: 50%;
@@ -126,7 +126,6 @@
 
         .hero p { font-size: 18px; margin-bottom: 30px; color: #E0E0E0; font-weight: 500; }
 
-        /* Video ve Şerit Alanı */
         .hero-video-wrapper {
             position: relative;
             z-index: 2;
@@ -202,7 +201,6 @@
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
         }
 
-        /* --- NEDEN BİZ KARTLARI --- */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -225,7 +223,6 @@
         .feature-card h3 { color: #FFD700; margin-bottom: 15px; font-size: 22px; font-family: 'Impact', sans-serif; letter-spacing: 1px; }
         .feature-card p { color: #bbb; font-size: 15px; }
 
-        /* --- ÜYELİK PAKETLERİ --- */
         .pricing-section { padding: 80px 20px; background: #1a1a1a; text-align: center; max-width: 1200px; margin: 0 auto; }
         
         .pricing-grid {
@@ -340,7 +337,6 @@
             font-size: 14px;
         }
 
-        /* --- SLİDER --- */
         .slider-container {
             position: relative;
             background: #212121;
@@ -422,7 +418,6 @@
             transform: scale(1.2);
         }
 
-        /* Modal Ekranı */
         .modal {
             display: none;
             position: fixed;
@@ -452,7 +447,6 @@
         }
         .modal-close:hover { color: #fff; text-shadow: 0 0 10px #FFD700; }
 
-        /* Kalori Hesaplayıcı */
         .calculator { background: #212121; padding: 35px; border-radius: 10px; border: 2px solid #333; display: inline-block; text-align: left; width: 100%; max-width: 500px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
         .calculator label { display: block; margin-top: 15px; color: #FFD700; font-weight: bold; }
         .calculator input, .calculator select { width: 100%; padding: 12px; margin-top: 5px; background: #2c2c2c; border: 1px solid #444; color: #fff; border-radius: 5px; }
@@ -524,13 +518,11 @@
         </div>
     </section>
 
-    <!-- FİYATLAR (Görsele Göre Güncellendi) -->
     <section class="pricing-section" id="uyelik">
         <h2>Üyelik Paketleri</h2>
         <p style="color: #aaa; margin-top: -20px; margin-bottom: 40px;">Sana en uygun üyeliği seç, sınırlarını ortadan kaldır.</p>
         
         <div class="pricing-grid">
-            <!-- Aylık -->
             <div class="membership-card">
                 <div class="card-header">
                     <h3>Aylık Üyelik</h3>
@@ -548,7 +540,6 @@
                 <a href="#hesaplayici" class="btn">Hemen Seç</a>
             </div>
 
-            <!-- 3 Aylık -->
             <div class="membership-card">
                 <div class="card-header">
                     <h3>3 Aylık Üyelik</h3>
@@ -566,7 +557,6 @@
                 <a href="#hesaplayici" class="btn">Hemen Seç</a>
             </div>
 
-            <!-- 6 Aylık -->
             <div class="membership-card popular">
                 <div class="popular-badge">En Popüler</div>
                 <div class="card-header">
@@ -585,7 +575,6 @@
                 <a href="#hesaplayici" class="btn">Hemen Seç</a>
             </div>
 
-            <!-- VIP / Özel Ders Dahil -->
             <div class="membership-card">
                 <div class="card-header">
                     <h3>VIP & Özel Ders</h3>
@@ -638,7 +627,7 @@
                 <option value="1.55">Orta Hareketli (Haftada 3-5 gün spor)</option>
                 <option value="1.725">Çok Hareketli (Haftada 6-7 gün spor)</option>
             </select>
-            <button class="btn" onclick="kaloriHesapla()">Hesapla</option>
+            <button class="btn" onclick="kaloriHesapla()">Hesapla</button>
             <div id="sonuc"></div>
         </div>
     </section>
